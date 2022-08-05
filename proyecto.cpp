@@ -18,14 +18,20 @@ void saludo(void); //saludo
 int rom1dec(char s[]); //romanos a enteros 1
 int rom2dec(char s[]); //romanos a enteros 2
 int menu(int num1, int num2);
-
+int matriz(int x, int y);
+void suma(void);
+/*
+int matriz1(int x, int y);
+int matriz2(int x, int y);
+void matriz3(void);
+*/
 using namespace std;
 
 
 int main(){
 	//declaración variables
 	char cad[20];
-	int num1,num2;
+	int num1,num2,filas,columnas;
 	int rom1dec(char s[]);
 	setlocale(LC_ALL,""); //carácteres especiales
 	saludo(); //llama la funcion saludo saludo
@@ -49,6 +55,14 @@ int main(){
 	cout<<"El número decimal del segundo número es: "<<num2<<endl;
 	
 	menu(num1,num2);
+	cout<<"\n";
+	cout<<"OPERACIONES CON MATRICES \n";
+	matriz(filas,columnas);
+	/*
+	matriz1(filas,columnas);
+	matriz2(filas,columnas);
+	matriz3();
+	*/
 	system("PAUSE");
 	return 0;
 }
@@ -154,6 +168,7 @@ int rom2dec(char s[]){
 //Menú
 int menu(int num1, int num2){
 	int opcion;
+	cout<<"OPERACIONES CON 2 NÚMEROS \n";
 	cout<<"MENÚ \n";
 	cout<<"1.SUMA \n";
 	cout<<"2.RESTA \n";
@@ -173,3 +188,55 @@ int menu(int num1, int num2){
 		default: cout<<"Digite una opción válida \n";
 	}
 }
+
+int matriz(int x, int y)
+{
+	int row,fil,i,j,opcion;
+    cout <<"Ingrese el numero de filas "<<endl;
+    cin >>fil;
+    cout <<"Ingrese el numero de columnas "<<endl;
+    cin >>row;
+    int matriz1[fil][row];
+    for  (i=0;i<=fil-1;i++)
+    {
+        for  (j=0;j<=row-1;j++)
+        {
+            cout <<"Ingrese la posicion "<<"("<<i<<")"<<"("<<j<<")"<<" de la matriz 1"<<endl;
+            cin >>matriz1[i][j];
+        }
+    }
+    cout<<"\n";
+    int matriz2[fil][row];
+    for  (i=0;i<=fil-1;i++)
+    {
+        for  (j=0;j<=row-1;j++)
+        {
+            cout <<"Ingrese la posicion "<<"("<<i<<")"<<"("<<j<<")"<<" de la matriz 2"<<endl;
+            cin >>matriz2[i][j];
+        }
+    }
+   	cout<<"Menú \n";
+   	cout<<"1.SUMA \n";
+   	cout<<"2.RESTA \n";
+   	cout<<"3.MULTIPLICACIÓN \n";
+   	cout<<"4.DIVISIÓN \n";
+   	cout<<"Digite la opción que quiere operar: ";cin>>opcion;
+   	
+   	switch(opcion){
+   		case 1: cout << "\nLA SUMA DE LA MATRIZ ES\n "<<endl;
+    			int matriz3[fil][row];
+    			for  (i=0;i<=fil-1;i++){
+       				for  (j=0;j<=row-1;j++){
+            			matriz3[i][j]= matriz1[i][j]+matriz2[i][j];
+            			cout << matriz3[i][j];
+            			cout<<"\t";
+        			}
+        			cout<<"\n\n";
+    			}
+   		break;   
+		   	
+	}
+
+
+}
+
