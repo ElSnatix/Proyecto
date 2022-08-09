@@ -15,7 +15,7 @@ using std::cin;
 using std::string; using std::reverse;
 
 //prototipos 
-void saludo(void); //saludo
+void saludo(void); 
 void menu();
 void menuMatrices();
 void menuNumeros(int Num1, int Num2);
@@ -28,11 +28,12 @@ int divisionEnteros(int Num1, int Num2);
 
 using namespace std;
 
+//main
 int main(){
 	//declaración variables
 	setlocale(LC_ALL,""); //carácteres especiales
 	saludo(); //llama la funcion saludo saludo
-	menu();
+	menu(); //llama a la funcion menu
 	
 	
 	return 0;
@@ -70,19 +71,22 @@ void menu(){
 	
 	if(opcion == 1){
 		cout<<"Ha seleccionado Matrices \n";
-		menuMatrices();
+		menuMatrices(); //llama a la funcion menuMatrices
 	}
 	
 	if(opcion == 2){			
 		cout<<"Ha seleccionado Numeros naturales \n";
-		string NumeroRomano1;
-		string NumeroRomano2;
+		string NumeroRomano1; //declaracion de strings
+		string NumeroRomano2; //declaracion de strings
 		cout<<"Ingrese el primer numero \n";
 		cin >> NumeroRomano1;  
 		cout<<"Ingrese el segundo numero \n";
-		cin >> NumeroRomano2;  		
+		cin >> NumeroRomano2;
+		
+		//Numero entero igual a la funcion deRomanoAEntero		
   		int NumeroEntero1 = deRomanoAEntero(NumeroRomano1);
   		int NumeroEntero2 = deRomanoAEntero(NumeroRomano2);
+  		
 		cout << "El primer numero ingresado fue: " << NumeroEntero1 << " o " << NumeroRomano1 << "\n";
 		cout << "El segundo numero ingresado fue: " << NumeroEntero2 << " o " << NumeroRomano2 << "\n";	
 		menuNumeros(NumeroEntero1, NumeroEntero2);
@@ -119,7 +123,7 @@ void menuMatrices(){
 		cout<<"Ha seleccionado determinante \n";
 		break;
 		default: cout<<"Digite una opción válida \n";
-		menuMatrices();
+		menuMatrices(); 
 	}
 }
 
@@ -141,15 +145,23 @@ void menuNumeros(int Num1, int Num2){
 		cout << " + ";
 		deEnteroARomano(Num2);
 		cout << " = ";
-		deEnteroARomano(sumaEnteros(Num1, Num2));
+		deEnteroARomano(sumaEnteros(Num1, Num2)); //muestra la suma en números romanos
 		cout << "\n";
 		break;
 		case 2:
 		cout<<"Ha seleccionado Resta \n";
-		if(restaEnteros >= 0){
-			cout<<"puta";
+		if(restaEnteros(Num1,Num2) >= 0){
+			cout<< Num1 << " - "<< Num2 << " = " << restaEnteros(Num1, Num2) << "\n";
+			deEnteroARomano(Num1);
+			cout<< " - ";
+			deEnteroARomano(Num2);
+			cout<< " = ";
+			deEnteroARomano(restaEnteros(Num1, Num2)); //muestra la resta en numeros romanos
+			cout<<"\n";
+			
 		}else{
-			cout<<"la resta da ";
+			cout<<"la resta da negativa y no puede ser expresada en números romanos \n";
+			cout<<"La resta en enteros es: " << Num1 << " - " << Num2 << " = " << restaEnteros(Num1, Num2) << "\n";			
 		}
 		break;
 		case 3:
