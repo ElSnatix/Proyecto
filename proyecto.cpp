@@ -70,7 +70,25 @@ void menu(){
 	cout<<"Digite el número de la opción: ";cin>>opcion;cout<<endl;
 	
 	if(opcion == 1){
+		
+		int Tam,i=0,j=0;
+		int matriz1[i][j];
+		string NumeroRomano1;
 		cout<<"Ha seleccionado Matrices \n";
+		cout<<"Digite el tamaño del matriz: ";cin>>Tam;
+		//rellenar la matriz 1
+		for(int i=0;i<Tam;i++){
+			for(int j=0;j<Tam;j++){
+				cout<<"Digite el número romano de la posición "<< i << ", "<< j<<": " ;
+				cin>>matriz1[i][j];
+			}
+		}
+		//mostrar la matriz 1
+		for(int i=0;i<Tam;i++){
+			for(int j=0;j<Tam;j++)
+				cout<<matriz1[i][j]<<"  ";
+				cout<<endl;
+		}
 		menuMatrices(); //llama a la funcion menuMatrices
 	}
 	
