@@ -15,7 +15,7 @@ using std::cin;
 using std::string; using std::reverse;
 
 //prototipos 
-void saludo(void); //saludo
+void saludo(void); 
 void menu();
 void menuMatrices();
 void menuNumeros(int Num1, int Num2);
@@ -28,11 +28,12 @@ int divisionEnteros(int Num1, int Num2);
 
 using namespace std;
 
+//main
 int main(){
 	//declaración variables
 	setlocale(LC_ALL,""); //carácteres especiales
 	saludo(); //llama la funcion saludo saludo
-	menu();
+	menu(); //llama a la funcion menu
 	
 	
 	return 0;
@@ -69,20 +70,41 @@ void menu(){
 	cout<<"Digite el número de la opción: ";cin>>opcion;cout<<endl;
 	
 	if(opcion == 1){
+		
+		int Tam,i=0,j=0;
+		int matriz1[i][j];
+		string NumeroRomano1;
 		cout<<"Ha seleccionado Matrices \n";
-		menuMatrices();
+		cout<<"Digite el tamaño del matriz: ";cin>>Tam;
+		//rellenar la matriz 1
+		for(int i=0;i<Tam;i++){
+			for(int j=0;j<Tam;j++){
+				cout<<"Digite el número romano de la posición "<< i << ", "<< j<<": " ;
+				cin>>matriz1[i][j];
+			}
+		}
+		//mostrar la matriz 1
+		for(int i=0;i<Tam;i++){
+			for(int j=0;j<Tam;j++)
+				cout<<matriz1[i][j]<<"  ";
+				cout<<endl;
+		}
+		menuMatrices(); //llama a la funcion menuMatrices
 	}
 	
 	if(opcion == 2){			
 		cout<<"Ha seleccionado Numeros naturales \n";
-		string NumeroRomano1;
-		string NumeroRomano2;
+		string NumeroRomano1; //declaracion de strings
+		string NumeroRomano2; //declaracion de strings
 		cout<<"Ingrese el primer numero \n";
 		cin >> NumeroRomano1;  
 		cout<<"Ingrese el segundo numero \n";
-		cin >> NumeroRomano2;  		
+		cin >> NumeroRomano2;
+		
+		//Numero entero igual a la funcion deRomanoAEntero		
   		int NumeroEntero1 = deRomanoAEntero(NumeroRomano1);
   		int NumeroEntero2 = deRomanoAEntero(NumeroRomano2);
+  		
 		cout << "El primer numero ingresado fue: " << NumeroEntero1 << " o " << NumeroRomano1 << "\n";
 		cout << "El segundo numero ingresado fue: " << NumeroEntero2 << " o " << NumeroRomano2 << "\n";	
 		menuNumeros(NumeroEntero1, NumeroEntero2);
@@ -119,7 +141,7 @@ void menuMatrices(){
 		cout<<"Ha seleccionado determinante \n";
 		break;
 		default: cout<<"Digite una opción válida \n";
-		menuMatrices();
+		menuMatrices(); 
 	}
 }
 
@@ -137,32 +159,64 @@ void menuNumeros(int Num1, int Num2){
 		case 1:
 		cout<<"Ha seleccionado Suma \n";
 		cout<< Num1 << " + " << Num2 << " = " << sumaEnteros(Num1, Num2) << "\n";
-		deEnteroARomano(Num1);
+		deEnteroARomano(Num1); //muestra el número 1 en romano
 		cout << " + ";
-		deEnteroARomano(Num2);
+		deEnteroARomano(Num2); //muestra el número 2 en romano
 		cout << " = ";
-		deEnteroARomano(sumaEnteros(Num1, Num2));
+		deEnteroARomano(sumaEnteros(Num1, Num2)); //muestra la suma en números romanos
 		cout << "\n";
 		break;
+		
 		case 2:
 		cout<<"Ha seleccionado Resta \n";
-		if(restaEnteros >= 0){
-			cout<<"puta";
+		if(restaEnteros(Num1,Num2) >= 0){
+			cout<< Num1 << " - "<< Num2 << " = " << restaEnteros(Num1, Num2) << "\n";
+			deEnteroARomano(Num1); //muestra el número 1 en romano
+			cout<< " - ";
+			deEnteroARomano(Num2); //muestra el número 2 en romano
+			cout<< " = ";
+			deEnteroARomano(restaEnteros(Num1, Num2)); //muestra la resta en numeros romanos
+			cout<<"\n";
+			
 		}else{
-			cout<<"la resta da ";
+			cout<<"la resta da negativa y no puede ser expresada en números romanos \n";
+			cout<<"La resta en enteros es: " << Num1 << " - " << Num2 << " = " << restaEnteros(Num1, Num2) << "\n";			
 		}
 		break;
+		
 		case 3:
 		cout<<"Ha seleccionado Multiplicacion \n";
+		cout<< Num1 << " * " << Num2 << " = " << multiplicacionEnteros(Num1, Num2) << "\n";
+		deEnteroARomano(Num1); //muestra el número 1 en romano
+		cout << " * ";
+		deEnteroARomano(Num2); //muestra el número 2 en romano
+		cout << " = ";
+		deEnteroARomano(multiplicacionEnteros(Num1, Num2)); //muestra la multiplicacion en números romanos
+		cout << "\n";
 		break;
+		
 		case 4:
 		cout<<"Ha seleccionado division \n";
+		if(Num2 != 0){
+			cout<< Num1 << " / "<< Num2 << " = " << divisionEnteros(Num1, Num2) << "\n";
+			deEnteroARomano(Num1); //muestra el número 1 en romano
+			cout<< " / ";
+			deEnteroARomano(Num2); //muestra el número 2 en romano
+			cout<< " = ";
+			deEnteroARomano(divisionEnteros(Num1, Num2)); //muestra la division en numeros romanos
+			cout<<"\n";
+			
+		}else{
+			cout<<"La división no se puede hacer ya que no existe división por 0 \n";		
+		}
 		break;
+		
 		default: cout<<"Digite una opción válida \n";
-		menuNumeros(Num1, Num2);
+		menuNumeros(Num1, Num2); //lo lleva al menu de numeros enteros otra vez
 	}
 }
 
+// Operaciones de enteros
 int sumaEnteros(int Num1, int Num2){
 	return Num1 + Num2;
 }
@@ -226,6 +280,7 @@ int deRomanoAEntero(string rstr) {
         return result;
     }
     
+//traduce numeros enteros a romanos    
 void deEnteroARomano(int Numero){
 	int numero, unidades, decenas, centenas, millares;
 	
@@ -280,6 +335,3 @@ void deEnteroARomano(int Numero){
   		case 9: cout<<"IX"; break;
  	}
 }
-
-
-
