@@ -141,20 +141,21 @@ void menuNumeros(int Num1, int Num2){
 		case 1:
 		cout<<"Ha seleccionado Suma \n";
 		cout<< Num1 << " + " << Num2 << " = " << sumaEnteros(Num1, Num2) << "\n";
-		deEnteroARomano(Num1);
+		deEnteroARomano(Num1); //muestra el número 1 en romano
 		cout << " + ";
-		deEnteroARomano(Num2);
+		deEnteroARomano(Num2); //muestra el número 2 en romano
 		cout << " = ";
 		deEnteroARomano(sumaEnteros(Num1, Num2)); //muestra la suma en números romanos
 		cout << "\n";
 		break;
+		
 		case 2:
 		cout<<"Ha seleccionado Resta \n";
 		if(restaEnteros(Num1,Num2) >= 0){
 			cout<< Num1 << " - "<< Num2 << " = " << restaEnteros(Num1, Num2) << "\n";
-			deEnteroARomano(Num1);
+			deEnteroARomano(Num1); //muestra el número 1 en romano
 			cout<< " - ";
-			deEnteroARomano(Num2);
+			deEnteroARomano(Num2); //muestra el número 2 en romano
 			cout<< " = ";
 			deEnteroARomano(restaEnteros(Num1, Num2)); //muestra la resta en numeros romanos
 			cout<<"\n";
@@ -164,17 +165,40 @@ void menuNumeros(int Num1, int Num2){
 			cout<<"La resta en enteros es: " << Num1 << " - " << Num2 << " = " << restaEnteros(Num1, Num2) << "\n";			
 		}
 		break;
+		
 		case 3:
 		cout<<"Ha seleccionado Multiplicacion \n";
+		cout<< Num1 << " * " << Num2 << " = " << multiplicacionEnteros(Num1, Num2) << "\n";
+		deEnteroARomano(Num1); //muestra el número 1 en romano
+		cout << " * ";
+		deEnteroARomano(Num2); //muestra el número 2 en romano
+		cout << " = ";
+		deEnteroARomano(multiplicacionEnteros(Num1, Num2)); //muestra la multiplicacion en números romanos
+		cout << "\n";
 		break;
+		
 		case 4:
 		cout<<"Ha seleccionado division \n";
+		if(Num2 != 0){
+			cout<< Num1 << " / "<< Num2 << " = " << divisionEnteros(Num1, Num2) << "\n";
+			deEnteroARomano(Num1); //muestra el número 1 en romano
+			cout<< " / ";
+			deEnteroARomano(Num2); //muestra el número 2 en romano
+			cout<< " = ";
+			deEnteroARomano(divisionEnteros(Num1, Num2)); //muestra la division en numeros romanos
+			cout<<"\n";
+			
+		}else{
+			cout<<"La división no se puede hacer ya que no existe división por 0 \n";		
+		}
 		break;
+		
 		default: cout<<"Digite una opción válida \n";
-		menuNumeros(Num1, Num2);
+		menuNumeros(Num1, Num2); //lo lleva al menu de numeros enteros otra vez
 	}
 }
 
+// Operaciones de enteros
 int sumaEnteros(int Num1, int Num2){
 	return Num1 + Num2;
 }
@@ -238,6 +262,7 @@ int deRomanoAEntero(string rstr) {
         return result;
     }
     
+//traduce numeros enteros a romanos    
 void deEnteroARomano(int Numero){
 	int numero, unidades, decenas, centenas, millares;
 	
