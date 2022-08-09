@@ -7,12 +7,24 @@ Autores: Santiago Guarguati y David Santiago lópez
 #include <locale.h>
 #include <string.h>
 #include <string>
+#include <algorithm>
+#include <iterator>
+
+using std::cout; using std::endl;
+using std::cin;
+using std::string; using std::reverse;
 
 //prototipos 
 void saludo(void); //saludo
 void menu();
 void menuMatrices();
-void menuNumeros();
+void menuNumeros(int Num1, int Num2);
+int deRomanoAEntero(string rstr);
+void deEnteroARomano(int Numero);
+int sumaEnteros(int Num1, int Num2);
+int restaEnteros(int Num1, int Num2);
+int multiplicacionEnteros(int Num1, int Num2);
+int divisionEnteros(int Num1, int Num2);
 
 using namespace std;
 
@@ -63,12 +75,17 @@ void menu(){
 	
 	if(opcion == 2){			
 		cout<<"Ha seleccionado Numeros naturales \n";
-		string numeroRomano;
-  		cout << "Escribe elnumero romano: \n";
-  		getline(cin, numeroRomano);
-  		//int numeroEntero = deRomanoAEntero(numeroRomano);
-		cout << "El numero ingresado fue: " /*<< numeroEntero*/ << " o " << numeroRomano;	
-		//menuNumeros();
+		string NumeroRomano1;
+		string NumeroRomano2;
+		cout<<"Ingrese el primer numero \n";
+		cin >> NumeroRomano1;  
+		cout<<"Ingrese el segundo numero \n";
+		cin >> NumeroRomano2;  		
+  		int NumeroEntero1 = deRomanoAEntero(NumeroRomano1);
+  		int NumeroEntero2 = deRomanoAEntero(NumeroRomano2);
+		cout << "El primer numero ingresado fue: " << NumeroEntero1 << " o " << NumeroRomano1 << "\n";
+		cout << "El segundo numero ingresado fue: " << NumeroEntero2 << " o " << NumeroRomano2 << "\n";	
+		menuNumeros(NumeroEntero1, NumeroEntero2);
 	}else{	 
 		cout<<"Digite una opción válida \n";
 	}
@@ -107,7 +124,7 @@ void menuMatrices(){
 }
 
 //menu numeros
-void menuNumeros(){
+void menuNumeros(int Num1, int Num2){
 	int opcion;
 	cout<<"¿Que operacion desea realizar? \n";
 	cout<<"1.Suma \n";
@@ -119,9 +136,21 @@ void menuNumeros(){
 	switch(opcion){
 		case 1:
 		cout<<"Ha seleccionado Suma \n";
+		cout<< Num1 << " + " << Num2 << " = " << sumaEnteros(Num1, Num2) << "\n";
+		deEnteroARomano(Num1);
+		cout << " + ";
+		deEnteroARomano(Num2);
+		cout << " = ";
+		deEnteroARomano(sumaEnteros(Num1, Num2));
+		cout << "\n";
 		break;
 		case 2:
 		cout<<"Ha seleccionado Resta \n";
+		if(restaEnteros >= 0){
+			cout<<"puta";
+		}else{
+			cout<<"la resta da ";
+		}
 		break;
 		case 3:
 		cout<<"Ha seleccionado Multiplicacion \n";
@@ -130,8 +159,21 @@ void menuNumeros(){
 		cout<<"Ha seleccionado division \n";
 		break;
 		default: cout<<"Digite una opción válida \n";
-		menuNumeros();
+		menuNumeros(Num1, Num2);
 	}
+}
+
+int sumaEnteros(int Num1, int Num2){
+	return Num1 + Num2;
+}
+int restaEnteros(int Num1, int Num2){
+	return Num1 - Num2;
+}
+int multiplicacionEnteros(int Num1, int Num2){
+	return Num1 * Num2;
+}
+int divisionEnteros(int Num1, int Num2){
+	return Num1 / Num2;
 }
 
 //traduce numeros romanos a enteros
@@ -183,6 +225,58 @@ int deRomanoAEntero(string rstr) {
         }
         return result;
     }
+    
+void deEnteroARomano(int Numero){
+	int numero, unidades, decenas, centenas, millares;
+	
+	unidades = Numero % 10; Numero /= 10;
+ 	decenas = Numero % 10; Numero /= 10;
+ 	centenas = Numero % 10; Numero /= 10;
+ 	millares = Numero % 10; Numero /= 10;
 
-
-
+ 	switch (millares)
+ 	{
+  		case 1: cout<<"M"; break;
+  		case 2: cout<<"MM"; break;
+  		case 3: cout<<"MMM"; break;
+ 	}
+ 
+ 	switch (centenas)
+ 	{
+ 		case 1: cout<<"C"; break;
+ 	 	case 2: cout<<"CC"; break;
+  		case 3: cout<<"CCC"; break;
+ 	 	case 4: cout<<"CD"; break;
+ 	 	case 5: cout<<"D"; break;
+ 	 	case 6: cout<<"DC"; break;
+  		case 7: cout<<"DCC"; break;
+  		case 8: cout<<"DCCC"; break;
+  		case 9: cout<<"CM"; break; 
+ 	}
+ 
+	switch (decenas)
+ 	{
+  		case 1: cout<<"X"; break;
+  		case 2: cout<<"XX"; break;
+  		case 3: cout<<"XXX"; break;
+  		case 4: cout<<"XL"; break;
+  		case 5: cout<<"L"; break;
+  		case 6: cout<<"LX"; break;
+  		case 7: cout<<"LXX"; break;
+  		case 8: cout<<"LXXX"; break;
+  		case 9: cout<<"XC"; break; 
+ 	}
+ 
+ 	switch (unidades)
+ 	{
+  		case 1: cout<<"I"; break;
+  		case 2: cout<<"II"; break;
+  		case 3: cout<<"III"; break;
+  		case 4: cout<<"IV"; break;
+  		case 5: cout<<"V"; break;
+  		case 6: cout<<"VI"; break;
+  		case 7: cout<<"VII"; break;
+  		case 8: cout<<"VIII"; break;
+  		case 9: cout<<"IX"; break;
+ 	}
+}
