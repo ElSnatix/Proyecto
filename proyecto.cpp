@@ -33,6 +33,7 @@ int multiplicacionEnteros(int Num1, int Num2);
 int divisionEnteros(int Num1, int Num2);
 
 void sumaMatrices(int Matriz1[100][100], int Matriz2[100][100], int Tamano); //cree una void donde le entran dos matrices y un tamaño lo importante es no declarar el primer tamaño de las matrices 
+void restaMatrices(int Matriz1[100][100], int Matriz2[100][100], int Tamano);
 void multiplicacionMatrices(int Matriz1[100][100], int Matriz2[100][100], int Tamano);
 int determinante(int matriz[][MAX], int orden);	
 
@@ -82,7 +83,7 @@ void menu(){
 	cout<<"2.Numeros naturales \n";
 	cout<<"3.Salir \n";
 	cout<<"Digite el número de la opción: ";cin>>opcion;cout<<endl;
-	cout<<"----------------------------------------------------------------------------------------------------------------------";
+	cout<<"----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- \n";
 	
 	while(opcion != 3){
 		if(opcion == 1){
@@ -98,11 +99,11 @@ void menu(){
 			//rellenar la matriz 1
 			for(int i=0;i<Tam;i++){
 				for(int j=0;j<Tam;j++){
-					cout<<"Digite el número romano de la posición "<< i << ", "<< j<<"para la primera matriz: " ;
+					cout<<"Digite el número romano de la posición "<< i << ", "<< j<<" para la primera matriz: " ;
 					cin>>MatrizRomano1[i][j];
 					if(MatrizRomano1[i][j].find("IIII")<100||MatrizRomano1[i][j].find("VV")<100||MatrizRomano1[i][j].find("XXXXX")<100||MatrizRomano1[i][j].find("LL")<100||MatrizRomano1[i][j].find("CCCCC")<100||MatrizRomano1[i][j].find("DD")<100){
-						cout<< "Ese numero no es correcto";
-						cout<< "El numero contiene IIII o VV o XXXXX por lo tanto kasdfhlkasfhkuahfasdbjk";
+						cout<< "Este número no es correcto, ";
+						cout<< "el número contiene IIII o VV o XXXXX o LL o CCCCC o DD por lo tanto debe escribirlo bien";
 						exit(0);
 					}
 					Matriz1[i][j]=deRomanoAEntero(MatrizRomano1[i][j]);
@@ -128,7 +129,8 @@ void menu(){
 					cout<<"Digite el número romano de la posición "<< i << ", "<< j<<"para la segunda matriz: " ;
 					cin>>MatrizRomano2[i][j];
 					if(MatrizRomano2[i][j].find("IIII")<100||MatrizRomano2[i][j].find("VV")<100||MatrizRomano2[i][j].find("XXXXX")<100||MatrizRomano2[i][j].find("LL")<100||MatrizRomano2[i][j].find("CCCCC")<100||MatrizRomano2[i][j].find("DD")<100){
-						cout<< "Ese numero no es correcto";
+						cout<< "Ese numero no es correcto, ";
+						cout<< "el número contiene IIII o VV o XXXXX o LL o CCCCC o DD por lo tanto debe escribirlo bien";
 						exit(0);
 					}
 					Matriz2[i][j]=deRomanoAEntero(MatrizRomano2[i][j]);
@@ -158,13 +160,15 @@ void menu(){
 			cout<<"Ingrese el primer numero \n";
 			cin >> NumeroRomano1;
 			if(NumeroRomano1.find("IIII")<100||NumeroRomano1.find("VV")<100||NumeroRomano1.find("XXXXX")<100||NumeroRomano1.find("LL")<100||NumeroRomano1.find("CCCCC")<100||NumeroRomano1.find("DD")<100){
-				cout<< "Ese numero no es correcto";
+				cout<< "Este numero no es correcto, ";
+				cout<< "el número contiene IIII o VV o XXXXX o LL o CCCCC o DD por lo tanto debe escribirlo bien";
 				exit(0);
 			}  
 			cout<<"Ingrese el segundo numero \n";
 			cin >> NumeroRomano2;
 			if(NumeroRomano2.find("IIII")<100||NumeroRomano2.find("VV")<100||NumeroRomano2.find("XXXXX")<100||NumeroRomano2.find("LL")<100||NumeroRomano2.find("CCCCC")<100||NumeroRomano2.find("DD")<100){
-				cout<< "Ese numero no es correcto";
+				cout<< "Este número no es correcto, ";
+				cout<< "el número contiene IIII o VV o XXXXX o LL o CCCCC o DD por lo tanto debe escribirlo bien";
 				exit(0);
 			}  
 			
@@ -190,7 +194,7 @@ void menu(){
 			menu();
 		}
 		if(continuar == 2){
-			break;
+			exit(0);
 		}
 	}	
 }
@@ -213,6 +217,7 @@ void menuMatrices(int Matriz1[100][100] , int Matriz2[100][100] , int Tamano){
 		break;
 		case 2:
 		cout<<"Ha seleccionado Resta \n";
+		restaMatrices(Matriz1 ,Matriz2 ,Tamano);
 		break;
 		case 3:
 		cout<<"Ha seleccionado Multiplicacion \n";
@@ -220,7 +225,7 @@ void menuMatrices(int Matriz1[100][100] , int Matriz2[100][100] , int Tamano){
 		break;
 		case 4:
 		cout<<"Ha seleccionado division \n";
-		cout << "Puro pelao mk \n";
+		cout << "No se puede realizar la división ya que se debe hallar la inversa de la segunda matriz, lo que da 0 \n";
 		break;
 		case 5:
 		cout<<"Ha seleccionado determinante \n";
@@ -342,7 +347,7 @@ int multiplicacionEnteros(int Num1, int Num2){
 int divisionEnteros(int Num1, int Num2){
 	return Num1 / Num2;
 }
-
+//Suma de matrices
 void sumaMatrices(int Matriz1[100][100], int Matriz2[100][100], int Tamano){
 	
 	int MatrizSumada[Tamano][Tamano];
@@ -370,6 +375,35 @@ void sumaMatrices(int Matriz1[100][100], int Matriz2[100][100], int Tamano){
 	}
 }
 
+//Resta de matrices
+void restaMatrices(int Matriz1[100][100], int Matriz2[100][100], int Tamano){
+	
+	int MatrizRestada[Tamano][Tamano];
+	
+	//Resta las matrices
+	for(int i=0;i<Tamano;i++){
+		for(int j=0;j<Tamano;j++)
+			MatrizRestada[i][j] = Matriz1[i][j] - Matriz2[i][j];
+	}
+	//mostrar la matriz restada en enteros
+	cout << "La resta de matrices da (enteros): \n";
+	for(int i=0;i<Tamano;i++){
+		for(int j=0;j<Tamano;j++)
+			cout<<MatrizRestada[i][j]<<"  ";
+			cout<<endl;
+	}
+	//mostrar la matriz restada en romanos
+	cout << "La resta de matrices da (romanos): \n";
+	for(int i=0;i<Tamano;i++){
+		for(int j=0;j<Tamano;j++){
+			deEnteroARomano(MatrizRestada[i][j]);
+			cout<<"  ";
+		}
+			cout<<endl;
+	}
+}
+
+//Multiplicación de matrices
 void multiplicacionMatrices(int Matriz1[100][100], int Matriz2[100][100], int Tamano) {
 
     int MatrizMultiplicada[100][100];
@@ -378,20 +412,20 @@ void multiplicacionMatrices(int Matriz1[100][100], int Matriz2[100][100], int Ta
         for (int col = 0; col < Tamano; col++) {
             // Multiply the row of A by the column of B to get the row, column of product.
             for (int inner = 0; inner < Tamano; inner++) {
-                MatrizMultiplicada[row][col] += Matriz1[row][inner] * Matriz2[inner][col];
+                MatrizMultiplicada[row][col] += Matriz1[row][inner] * Matriz2[inner][col]; //multiplicación de las 2
             }
         }
     }
     
-    //mostrar la matriz sumada en enteros
-	cout << "La suma de matrices da (enteros): \n";
+    //mostrar la matriz multiplicada 
+	cout << "La multiplicación de matrices da (enteros): \n";
 	for(int i=0;i<Tamano;i++){
 		for(int j=0;j<Tamano;j++)
 			cout<<MatrizMultiplicada[i][j]<<"  ";
 			cout<<endl;
 	}
-	//mostrar la matriz sumada en romanos
-	cout << "La suma de matrices da (romanos): \n";
+	//mostrar la matriz multiplicada en romanos
+	cout << "La multiplicación de matrices da (romanos): \n";
 	for(int i=0;i<Tamano;i++){
 		for(int j=0;j<Tamano;j++){
 			deEnteroARomano(MatrizMultiplicada[i][j]);
@@ -401,6 +435,7 @@ void multiplicacionMatrices(int Matriz1[100][100], int Matriz2[100][100], int Ta
 	}
 }
 
+//Determinante de las matrices
 int determinante(int matriz[][MAX], int orden)
 {
    int det = 0.0;
@@ -416,7 +451,7 @@ int determinante(int matriz[][MAX], int orden)
    return det;
 }
 
-
+//cofactor usado en la funcion determinante
 int cofactor(int matriz[][MAX], int orden, int fila, int columna)
 {
    int submatriz[MAX][MAX];
