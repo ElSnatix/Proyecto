@@ -101,10 +101,11 @@ void menu(){
 				for(int j=0;j<Tam;j++){
 					cout<<"Digite el número romano de la posición "<< i << ", "<< j<<" para la primera matriz: " ;
 					cin>>MatrizRomano1[i][j];
+					//Hace las excepciones de los números romanos
 					if(MatrizRomano1[i][j].find("IIII")<100||MatrizRomano1[i][j].find("VV")<100||MatrizRomano1[i][j].find("XXXXX")<100||MatrizRomano1[i][j].find("LL")<100||MatrizRomano1[i][j].find("CCCCC")<100||MatrizRomano1[i][j].find("DD")<100){
 						cout<< "Este número no es correcto, ";
 						cout<< "el número contiene IIII o VV o XXXXX o LL o CCCCC o DD por lo tanto debe escribirlo bien";
-						exit(0);
+						exit(0); //termina el programa
 					}
 					Matriz1[i][j]=deRomanoAEntero(MatrizRomano1[i][j]);
 				}
@@ -128,10 +129,11 @@ void menu(){
 				for(int j=0;j<Tam;j++){
 					cout<<"Digite el número romano de la posición "<< i << ", "<< j<<"para la segunda matriz: " ;
 					cin>>MatrizRomano2[i][j];
+					//Hace las excepciones de los números romanos
 					if(MatrizRomano2[i][j].find("IIII")<100||MatrizRomano2[i][j].find("VV")<100||MatrizRomano2[i][j].find("XXXXX")<100||MatrizRomano2[i][j].find("LL")<100||MatrizRomano2[i][j].find("CCCCC")<100||MatrizRomano2[i][j].find("DD")<100){
 						cout<< "Ese numero no es correcto, ";
 						cout<< "el número contiene IIII o VV o XXXXX o LL o CCCCC o DD por lo tanto debe escribirlo bien";
-						exit(0);
+						exit(0);  //termina el programa
 					}
 					Matriz2[i][j]=deRomanoAEntero(MatrizRomano2[i][j]);
 				}
@@ -159,17 +161,19 @@ void menu(){
 			string NumeroRomano2; //declaracion de strings
 			cout<<"Ingrese el primer numero \n";
 			cin >> NumeroRomano1;
+			//Hace las excepciones de los números romanos
 			if(NumeroRomano1.find("IIII")<100||NumeroRomano1.find("VV")<100||NumeroRomano1.find("XXXXX")<100||NumeroRomano1.find("LL")<100||NumeroRomano1.find("CCCCC")<100||NumeroRomano1.find("DD")<100){
 				cout<< "Este numero no es correcto, ";
 				cout<< "el número contiene IIII o VV o XXXXX o LL o CCCCC o DD por lo tanto debe escribirlo bien";
-				exit(0);
+				exit(0);  //termina el programa
 			}  
 			cout<<"Ingrese el segundo numero \n";
 			cin >> NumeroRomano2;
+			//Hace las excepciones de los números romanos
 			if(NumeroRomano2.find("IIII")<100||NumeroRomano2.find("VV")<100||NumeroRomano2.find("XXXXX")<100||NumeroRomano2.find("LL")<100||NumeroRomano2.find("CCCCC")<100||NumeroRomano2.find("DD")<100){
 				cout<< "Este número no es correcto, ";
 				cout<< "el número contiene IIII o VV o XXXXX o LL o CCCCC o DD por lo tanto debe escribirlo bien";
-				exit(0);
+				exit(0);  //termina el programa
 			}  
 			
 			//Numero entero igual a la funcion deRomanoAEntero		
@@ -178,7 +182,7 @@ void menu(){
 	  		
 			cout << "El primer numero ingresado fue: " << NumeroEntero1 << " o " << NumeroRomano1 << "\n";
 			cout << "El segundo numero ingresado fue: " << NumeroEntero2 << " o " << NumeroRomano2 << "\n";	
-			menuNumeros(NumeroEntero1, NumeroEntero2);
+			menuNumeros(NumeroEntero1, NumeroEntero2); //llama a la función menú números
 		}
 		if(opcion>3 || opcion<1){	 
 			cout<<"Digite una opción válida \n";
@@ -410,9 +414,9 @@ void multiplicacionMatrices(int Matriz1[100][100], int Matriz2[100][100], int Ta
 
     for (int row = 0; row < Tamano; row++) {
         for (int col = 0; col < Tamano; col++) {
-            // Multiply the row of A by the column of B to get the row, column of product.
+            // Multiplica la fila A por la columna B para tener la fila y columna del producto
             for (int inner = 0; inner < Tamano; inner++) {
-                MatrizMultiplicada[row][col] += Matriz1[row][inner] * Matriz2[inner][col]; //multiplicación de las 2
+                MatrizMultiplicada[row][col] += Matriz1[row][inner] * Matriz2[inner][col]; //multiplicación de las 2 matrices
             }
         }
     }
@@ -444,7 +448,7 @@ int determinante(int matriz[][MAX], int orden)
       det = matriz[0][0];
    } else {
       for (int j = 0; j < orden; j++) {
-         det = det + matriz[0][j] * cofactor(matriz, orden, 0, j);
+         det = det + matriz[0][j] * cofactor(matriz, orden, 0, j); //uso del cofactor
       }
    }
    
