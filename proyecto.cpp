@@ -57,22 +57,22 @@ int main(){
 //Saludo
 void saludo(void){
 	system("color f0");
-	printf("\t\t UNIVERSIDAD DISTRITAL FRANCISCO JOSÉ DE CALDAS \n\n");
+	printf("\t\t UNIVERSIDAD DISTRITAL FRANCISCO JOSE DE CALDAS \n\n");
     cout<<"PROYECTO CALCULADORA ROMANA \n";
-    cout<<"Santiago Guarguati y David Santiago lópez Lazaro\n\n";
-    printf("\t\t     *      *    ***    \n");
-    printf("\t\t     *      *    **    \n");
-    printf("\t\t     *      *    ****   \n");
-    printf("\t\t     *      *    *       **   \n");
-	printf("\t\t     *      *    *        **  \n");
-    printf("\t\t     *      *    *         **  \n");
-    printf("\t\t     *      *    *         **  \n");
-	printf("\t\t     *      *    *         *  \n");
-    printf("\t\t     *      *    *        *   \n");
-    printf("\t\t     *      *    *      *\n");
-    printf("\t\t     ****    ***  \n");
-    printf("\t\t     ****    **    \n");
-    printf("\t\t     ****    ***   \n\n");    
+    cout<<"Santiago Guarguati y David santiago lópez \n\n";
+    printf("\t\t     ******      ******    *************    \n");
+    printf("\t\t     ******      ******    **************    \n");
+    printf("\t\t     ******      ******    ***************     \n");
+    printf("\t\t     ******      ******    ***       ******   \n");
+	printf("\t\t     ******      ******    ***        ******  \n");
+    printf("\t\t     ******      ******    ***         ******  \n");
+    printf("\t\t     ******      ******    ***         ******  \n");
+	printf("\t\t     ******      ******    ***         *****  \n");
+    printf("\t\t     ******      ******    ***        *****   \n");
+    printf("\t\t     ******************    ***       ******    \n");
+    printf("\t\t     ******************    ***************    \n");
+    printf("\t\t     ******************    **************    \n");
+    printf("\t\t     ******************    *************    \n\n");    
 }
 
 //Menú
@@ -202,6 +202,10 @@ void menuPrincipal(){
 			system("PAUSE");
 			exit(0);
 		}
+		if(continuar!=2 and continuar!=1){
+			cout<<"Digite una opción correcta \n";
+			exit(0);
+		}
 	}	
 }
 
@@ -281,7 +285,7 @@ void menuNumeros(int num1, int num2){
 		case 1:
 			cout<<"Ha seleccionado Suma\n";
 			cout<< num1 << " + " << num2 << " = " << sumaEnteros(num1, num2) << "\n";
-			enteroARomano(num1); //muestra el n?mero 1 en romano
+			enteroARomano(num1); //muestra el número 1 en romano
 			cout << " + ";
 			enteroARomano(num2); //muestra el n?mero 2 en romano
 			cout << " = ";
@@ -415,7 +419,7 @@ void multiplicacionMatrices(int matriz1[100][100], int matriz2[100][100], int ta
 
     for (int row = 0; row < tamano; row++) {
         for (int col = 0; col < tamano; col++) {
-            // Multiply the row of A by the column of B to get the row, column of product.
+            // Multiplica la fila de A por la columna de B, para tener la fila y la columna del producto
             for (int inner = 0; inner < tamano; inner++) {
                 matrizMultiplicada[row][col] += matriz1[row][inner] * matriz2[inner][col]; //multiplicación de las 2
             }
